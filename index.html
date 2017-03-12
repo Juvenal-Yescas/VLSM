@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es"> 
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Calcula ip VLSM</title>
+	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
+	<!-- Javascript -->
+	<script src="js/normal.js"></script>
+	<script src="js/desorden.js"></script>
+</head>
+<body>
+	<form>
+		<br><br>
+		<input id="normal" type="radio" name="ipleka" checked> <b>De mayor a menor</b> <br>
+		<input id="revuelto" type="radio" name="ipleka" ><b>En desorden</b><br>
+		<br><br>
+		<b>Ip de red:</b><br> <input type="text" id="ip_red" >
+		<br><br>
+		<b>Numero de redes:</b><br> <input type="text" id="num_redes">
+		<br><br>
+		
+	</form> 
+	<button onclick="main();">Calcular</button>
+</body>
+</html>
