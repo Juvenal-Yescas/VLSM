@@ -18,7 +18,7 @@ function ip_inicial_revuelto() {
 	if (primera_vez) {
 		console.log("%cESTE ES VALIDO","color:orange");
 		primera_vez=false;
-		console.log("%c"+ip_red,"color:green");
+		console.log("%c"+(ip_red.toString()).replace(/,/g,"."),"color:green");
 		/*var arr = [ip_red,0]; //Analisis vectorial función
 		ips_calculadas.push(arr);*/
 	}
