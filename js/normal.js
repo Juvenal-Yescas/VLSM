@@ -26,26 +26,27 @@ function calcula_ip_inicial() {
 		primera_vez=false;
 	}else{
 		ip_red[3]=ip_red[3]+1;
-		if (ip_red[3]>255) {
+		if ((ip_red[3]+3)>255) {
 			ip_red[2]=ip_red[2]+1; ip_red[3]=0;
 		}
 	}
-	console.log("Ip inicial: ",ip_red);
+	console.log("%cIp inicial: "+(ip_red.toString()).replace(/,/g,"."),"color:green");
 }
 
 function calcula_ip_final(elmultiplo){
 	if (elmultiplo<=256) {
 		ip_red[3]=ip_red[3]+ (elmultiplo-1); 
+		if (ip_red[3]>255) {console.log("%cAlgo anda mal, hacerlo manual, o pregunta a Manuel","color:red")}
 	}else{
 		if (ip_red[2]<255) {
 			ip_red[2]=ip_red[2]+(rango_modificar(elmultiplo));
 			ip_red[3]=255;
 		}else{
-			console.log("Falta validar esto... ERROR");
+			console.log("%cFalta validar esto... ERROR","color:red");
 		}
 
 	}
-	console.log("Ip final: ",ip_red);
+	console.log("%cIp final: "+(ip_red.toString()).replace(/,/g,"."),"color:green");
 }
 
 function que_rango_mascara(la_potencia) {
@@ -61,19 +62,21 @@ function que_rango_mascara(la_potencia) {
 	if (la_potencia>8) {
 		cual=2;
 	}
-
+	var mascara="";
 	switch (cual) {
+		
 	    case 1:
-	       console.log("Mascara :","255.255.255.",calcula_mascara(la_potencia));
+		    console.log("%cMascara : 255.255.255."+(calcula_mascara(la_potencia).toString()),"color:purple");
 	        break;
 	    case 2:
-	       console.log("Mascara :","255.255.",calcula_mascara(la_potencia-8),".0");
+
+	    	console.log("%cMascara : 255.255."+(calcula_mascara(la_potencia-8).toString()+".0"),"color:purple");
 	        break;
 	    case 8:
-	    	console.log("Mascara :","255.255.255.0");
+	    	console.log("%cMascara : 255.255.255.0","color:purple");
 	    	break;
 	    default: 
-	        console.log("Mascara :","Algo anda mal");
+	        console.log("%cMascara : Algo anda mal","color:red");
 	}
 }
 

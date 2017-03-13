@@ -2,7 +2,7 @@
 VLSM desde navegador
 ### Calcula
 * De mayor a menor
-* En desorden
+* En desorden (Solo muestra el incremento), pronto automático.
 
 #### Probarlo
 

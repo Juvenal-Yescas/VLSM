@@ -2,7 +2,7 @@ var final_primera=true;
 var ips_calculadas=[];
 
 function revueltisimo() {
-	console.log("Hola lola, laaa! laraaraa! looo! lalala! ");
+	console.log("%cHola lola, laaa! laraaraa! looo! lalala! ","color:blue");
 }
 
 function main_revuelto() {
@@ -16,9 +16,9 @@ function main_revuelto() {
 
 function ip_inicial_revuelto() {
 	if (primera_vez) {
-		console.log("ESTE ES VALIDO");
+		console.log("%cESTE ES VALIDO","color:orange");
 		primera_vez=false;
-		console.log(ip_red);
+		console.log("%c"+ip_red,"color:green");
 		/*var arr = [ip_red,0]; //Analisis vectorial función
 		ips_calculadas.push(arr);*/
 	}
@@ -30,10 +30,10 @@ function ip_final_revuelto(elmultiplo) {
 		calcula_ip_final(elmultiplo);
 	}else{
 		if (elmultiplo<=256) {
-			console.log("Incrementa ip en: 0.0.0.",(elmultiplo-1)); 
+			console.log("%cIncrementa ip en: 0.0.0."+(elmultiplo-1),"color:green"); 
 		}else{
 			var mod_this=rango_modificar(elmultiplo);
-			console.log("Incrementa ip en: 0.0.",mod_this,".255")
+			console.log("%cIncrementa ip en: 0.0."+mod_this+".255","color:green")
 		}	
 	}
 }
