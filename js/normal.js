@@ -69,10 +69,10 @@ function que_rango_mascara(la_potencia) {
 	if (la_potencia>8) { cual=2; }
 	switch (cual) {
 	    case 1:
-	    mascara="255.255.255."+(calcula_mascara(la_potencia).toString());
+	    	mascara="255.255.255."+(calcula_mascara(la_potencia).toString());
 	        break;
 	    case 2:
-	    	mascara="255.255."+(calcula_mascara(la_potencia).toString())+".0";
+	    	mascara="255.255."+(calcula_mascara(la_potencia-8).toString())+".0";
 	        break;
 	    case 8:
 	    	mascara="255.255.255.0";
