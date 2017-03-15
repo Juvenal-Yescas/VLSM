@@ -12,16 +12,25 @@
 </head>
 <body>
 
-<!-- 	<form action="">
-		Enrutamiento:<br>
-		<input type="radio" name="enrutamiento" value="rip" checked>rip<br>
-		<input type="radio" name="enrutamiento" value="estatico">estatico<br>
-		<input type="radio" name="enrutamiento" value="eigrp">eigrp<br>
-		<input type="radio" name="enrutamiento" value="ospf">ospf<br>
+	<form action="">
+		Protocolo:<br>
+		<input type="radio" name="protocolo" value="rip" onclick="myFunction()">rip<br>
+		<input type="radio" name="protocolo" value="estatico" onclick="myFunction()">estatico<br>
+		<input type="radio" name="protocolo" value="eigrp" onclick="myFunction()">eigrp<br>
+		<input type="radio" name="protocolo" value="ospf" onclick="myFunction()">ospf<br>
 		<br>
-	</form> -->
+		<div id="input_num" style="display:none">
+			<input id="autonomo" type="text" name="autonomo" placeholder="Num Sistema autonomo">
+		</div>
+
+		<div id="input_area" style="display:none">
+			<input id="area" type="text" name="area" placeholder="Area">
+		</div>
+
+	</form>
 
 	<form>
+
 		<br><br>
 			Modo:<br>
 		<input id="normal" type="radio" name="ipleka" checked> <b>De mayor a menor</b> <br>
@@ -34,5 +43,8 @@
 		
 	</form> 
 	<button onclick="main();">Calcular</button>
+
+	<br>
+	<label id="comandos"></label>
 </body>
 </html>

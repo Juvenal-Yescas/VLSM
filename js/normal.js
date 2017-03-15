@@ -2,9 +2,9 @@ var ip_red;
 var normal=true;
 var primera_vez=true;
 var mascara="";
-
+var tipo_enruta="";
+var ip_ini_enruta="";
 function main() {
-	console.clear();
 	if (document.getElementById('normal').checked != true) {
 		normal=false; console.log("Manual, trabajando para automatico ;)");
 	}
@@ -13,16 +13,75 @@ function main() {
     for_numero_redes(document.getElementById("num_redes").value);
 }
 
+var las_ips;
 function principal() {
 	var asi_de_ips=Number(capturar_cuantas_ips());
+	las_ips=asi_de_ips;
 	console.log("---------------------------N0. IPS: ",asi_de_ips,"-------------------------")
 	var pot_resultado=elevar(asi_de_ips);
 	que_rango_mascara(Number(pot_resultado.potencia));
 	calcula_ip_inicial();
+	insertar_comandos();
 	calcula_ip_final(pot_resultado.resultado_potencia);
-	
 }
 
+function comandos_antes() {
+	var text = "Network "+ip_ini_enruta;
+    document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+}
+
+var leyenda_uno=true;
+
+function insertar_comandos() {
+	var text="";
+
+	switch (tipo_enruta) {
+
+    case "rip":
+    	if (leyenda_uno) {
+    		text="conf t<br/>\n router rip <br/>\n version 2<br/>\n";
+    		document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+    		leyenda_uno=false;
+    	}
+    	text ="["+las_ips+"] "+"Network "+ip_ini_enruta;
+        document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+        break; 
+
+    case "eigrp":
+    	if (leyenda_uno) {
+    		text="conf t<br/>\n router eigrp "+document.getElementById('autonomo').value;
+    		document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+    		leyenda_uno=false;
+    	}
+    	text ="["+las_ips+"] "+"Network "+ip_ini_enruta;
+        document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+        break; 
+
+    case "estatico":
+    	if (leyenda_uno) {
+    		text="conf t <br/>\n";
+    		document.getElementById('comandos').innerHTML += text;
+  			leyenda_uno=false;
+    	}
+        text ="["+las_ips+"] "+"ip route "+ip_ini_enruta+" "+mascara+" [puerto_salida]";
+        document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+        break; 
+
+    case "ospf":
+    	if (leyenda_uno) {
+    		text="conf t<br/>\n router ospf "+document.getElementById('autonomo').value;
+    		document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+    	}
+    	leyenda_uno=false;
+        text = "["+las_ips+"] "+"Network "+ip_ini_enruta+" "+mascara+" a "+document.getElementById('area').value;
+        document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+        break; 
+
+    default: 
+        text = "ERROR, ALGO ANDA MAL";
+}
+
+}
 function calcula_ip_inicial() {
 	if (primera_vez) {
 		primera_vez=false;
@@ -32,6 +91,7 @@ function calcula_ip_inicial() {
 			ip_red[2]=ip_red[2]+1; ip_red[3]=0;
 		}
 	}
+	ip_ini_enruta=remplazador(ip_red);
 	imprimir("ip inicial: ",ip_red,mascara,"green");
 	var ipmod=ip_red.slice();;
 	ipmod[3]=ipmod[3]+1;
@@ -40,8 +100,12 @@ function calcula_ip_inicial() {
 	imprimir("2nd valida: ",ipmod,mascara,"blue");
 }
 
+function remplazador(argument) {
+	return argument.toString().replace(/,/g,".");
+}
+
 function imprimir(tipoip,mip,maskara,color) {
-	console.log("%c"+tipoip+(mip.toString()).replace(/,/g,".")+" "+maskara,"color:"+color);
+	console.log("%c"+tipoip+remplazador(mip)+" "+maskara,"color:"+color);
 }
 
 function calcula_ip_final(elmultiplo){
@@ -132,13 +196,19 @@ document.onkeydown=function(evt){  // Para cuando se presiona ENTER
 }
 
 function myFunction() {
-    var enrutamiento = document.forms[0];
-    var txt = "";
-    var i;
-    for (i = 0; i < enrutamiento.length; i++) {
-        if (enrutamiento[i].checked) {
-            txt = txt + enrutamiento[i].value + " ";
+    var arre_radio = document.forms[0];
+     var vis = "none";
+    for (var i = 0; i < arre_radio.length; i++) {
+        if (arre_radio[i].checked) {
+            tipo_enruta =arre_radio[i].value + "";
+		    if (tipo_enruta=="eigrp") {
+		    	 vis = "block";
+		    }
+		    if (tipo_enruta=="ospf") {
+		    	 vis = "block";
+		    	 document.getElementById('input_area').style.display = vis;
+		    }
         }
     }
-    console.log(txt);
+    document.getElementById('input_num').style.display = vis;
 }
