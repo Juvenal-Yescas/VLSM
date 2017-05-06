@@ -4,14 +4,15 @@ var primera_vez=true;
 var mascara="";
 var tipo_enruta="";
 var ip_ini_enruta="";
-function main() {
-	if (document.getElementById('normal').checked != true) {
-		normal=false; console.log("Manual, trabajando para automatico ;)");
+
+$(document).ready(function(){
+
+    $.lilita = function(){
+		 console.log('lilita');
 	}
-	ip_red = document.getElementById("ip_red").value;
-	ip_red= ip_red.split(".").map(Number);
-    for_numero_redes(document.getElementById("num_redes").value);
-}
+
+	
+});
 
 var las_ips;
 function principal() {
@@ -187,12 +188,6 @@ function for_numero_redes(argument) {
 			main_revuelto();
 		}
 	}
-}
-
-document.onkeydown=function(evt){  // Para cuando se presiona ENTER
-	var keyCode = evt ? (evt.which ? evt.which : evt.keyCode) : event.keyCode;
-	if(keyCode == 13)
-		main();
 }
 
 function myFunction() {

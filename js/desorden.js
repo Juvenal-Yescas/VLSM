@@ -27,7 +27,20 @@ function ip_inicial_revuelto() {
 function ip_final_revuelto(elmultiplo) {
 	if (final_primera) {
 		final_primera=false;
-		calcula_ip_final(elmultiplo);
+		if (elmultiplo<255) {
+			
+				if ((ip_red[3]+(elmultiplo-1)) <= 255)   {
+				ip_red[3]=(elmultiplo-1);
+				imprimir("Ip final ",ip_red,mascara,'green');
+				
+			}else{
+				console.log('Algo anda mal');
+			}
+		}else{
+			console.log('Algo anda mal');
+		}
+		
+		
 	}else{
 		if (elmultiplo<=256) {
 			imprimir("Incrementa ip en ",("0.0.0."+(elmultiplo-1)),mascara,"green");

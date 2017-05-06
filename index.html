@@ -7,17 +7,19 @@
 	<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="img/favicon.ico" type="image/x-icon">
 	<!-- Javascript -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="js/eventos.js"></script>
 	<script src="js/normal.js"></script>
 	<script src="js/desorden.js"></script>
 </head>
 <body>
-
 	<form action="">
 		Protocolo:<br>
-		<input type="radio" name="protocolo" value="rip" onclick="myFunction()">rip<br>
-		<input type="radio" name="protocolo" value="estatico" onclick="myFunction()">estatico<br>
-		<input type="radio" name="protocolo" value="eigrp" onclick="myFunction()">eigrp<br>
-		<input type="radio" name="protocolo" value="ospf" onclick="myFunction()">ospf<br>
+		<input type="radio" name="protocolo" value="ninguno" id="ninguno" checked>Ninguno<br>
+		<input type="radio" name="protocolo" value="rip" id="rip">Rip<br>
+		<input type="radio" name="protocolo" value="estatico" id="estatico">estatico<br>
+		<input type="radio" name="protocolo" id="eigrp" value="eigrp" >Eigrp<br>
+		<input type="radio" name="protocolo" value="ospf" id="ospf">Ospf<br>
 		<br>
 		<div id="input_num" style="display:none">
 			<input id="autonomo" type="text" name="autonomo" placeholder="Num Sistema autonomo">
@@ -42,7 +44,7 @@
 		<br><br>
 		
 	</form> 
-	<button onclick="main();">Calcular</button>
+	<button id="bt_calcular" >Calcular</button>
 
 	<br>
 	<label id="comandos"></label>
