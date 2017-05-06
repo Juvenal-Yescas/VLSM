@@ -1,88 +1,103 @@
+// Si el orden de las ips se ingresan de mayor a menor
+
 var ip_red;
 var normal=true;
 var primera_vez=true;
 var mascara="";
 var tipo_enruta="";
 var ip_ini_enruta="";
-
-$(document).ready(function(){
-
-    $.lilita = function(){
-		 console.log('lilita');
-	}
-
-	
-});
-
 var las_ips;
-function principal() {
-	var asi_de_ips=Number(capturar_cuantas_ips());
-	las_ips=asi_de_ips;
-	console.log("---------------------------N0. IPS: ",asi_de_ips,"-------------------------")
-	var pot_resultado=elevar(asi_de_ips);
-	que_rango_mascara(Number(pot_resultado.potencia));
-	calcula_ip_inicial();
-	insertar_comandos();
-	calcula_ip_final(pot_resultado.resultado_potencia);
-}
-
-function comandos_antes() {
-	var text = "Network "+ip_ini_enruta;
-    document.getElementById('comandos').innerHTML += "<br/>\n" + text;
-}
-
 var leyenda_uno=true;
 
-function insertar_comandos() {
-	var text="";
+var principalj,insertar_comandosj,imprimirj;
+$().ready(function(){
+	principalj = function(){
+	alert(" _msg ");
+	}
 
+	imprimirj = function(tipoip,mip,maskara,color){
+		var este_ip=tipoip+remplazador(mip)+" "+maskara;
+		var txt2 = $("<div></div>").text(este_ip).css('color',color); 
+		$('#resultado_ipsx').append(txt2); 
+		console.log("%c"+tipoip+remplazador(mip)+" "+maskara,"color:"+color);
+	}
+
+	insertar_comandosj = function(){
+	var text="";
 	switch (tipo_enruta) {
 
     case "rip":
     	if (leyenda_uno) {
-    		text="conf t<br/>\n router rip <br/>\n version 2<br/>\n";
-    		document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+    		text="<div><br/> conf t<br/>\n router rip <br/>\n version 2<br/>\n </div>";
+    		$('#comandos').html(text);
     		leyenda_uno=false;
     	}
-    	text ="["+las_ips+"] "+"Network "+ip_ini_enruta;
-        document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+    	text =" <div> <br/>\n ["+las_ips+"] "+"Network "+ip_ini_enruta +"</div>";
+    	$( ".comandos_cisco" ).html(text);
         break; 
 
     case "eigrp":
     	if (leyenda_uno) {
-    		text="conf t<br/>\n router eigrp "+document.getElementById('autonomo').value;
-    		document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+    		text="<br/> conf t<br/>\n router eigrp "+$( "#autonomo" ).val();
+    		$('#comandos').html(text);
     		leyenda_uno=false;
     	}
-    	text ="["+las_ips+"] "+"Network "+ip_ini_enruta;
-        document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+    	text ="<br/>\n ["+las_ips+"] "+"Network "+ip_ini_enruta;
+        $( ".comandos_cisco" ).append(text);
         break; 
 
     case "estatico":
     	if (leyenda_uno) {
-    		text="conf t <br/>\n";
-    		document.getElementById('comandos').innerHTML += text;
+    		text="<br/> conf t <br/>\n";
+    		$('#comandos').html(text);
   			leyenda_uno=false;
     	}
-        text ="["+las_ips+"] "+"ip route "+ip_ini_enruta+" "+mascara+" [puerto_salida]";
-        document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+        text ="<br/>\n ["+las_ips+"] "+"ip route "+ip_ini_enruta+" "+mascara+" [puerto_salida]";
+        $( ".comandos_cisco" ).append(text);
         break; 
 
     case "ospf":
     	if (leyenda_uno) {
-    		text="conf t<br/>\n router ospf "+document.getElementById('autonomo').value;
-    		document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+    		text="<br/> conf t<br/>\n router ospf "+$( "#autonomo" ).val();
+    		$('#comandos').html(text);
+    		leyenda_uno=false;
     	}
-    	leyenda_uno=false;
-        text = "["+las_ips+"] "+"Network "+ip_ini_enruta+" "+mascara+" a "+document.getElementById('area').value;
-        document.getElementById('comandos').innerHTML += "<br/>\n" + text;
+    	
+        text = "<br/>\n ["+las_ips+"] "+"Network "+ip_ini_enruta+" "+mascara+" a "+$( "#area" ).val();
+        $( ".comandos_cisco" ).append(text);
         break; 
 
     default: 
         text = "ERROR, ALGO ANDA MAL";
 }
+	}
+})
 
+$(document).ready(function(){
+
+    $.lilita = function(parametro){
+		 console.log(parametro);
+	}
+});
+
+
+function principal() {
+	var asi_de_ips=Number(capturar_cuantas_ips());
+	las_ips=asi_de_ips;
+	console.log("---------------------------N0. IPS: ",asi_de_ips,"-------------------------")
+	
+	var txts = $("<br></br>"); 
+	$('#resultado_ipsx').append(txts); 
+	txts=$("<div></div>").text("-----------------N0. IPS: "+asi_de_ips+"---------").css("color","red");
+	$('#resultado_ipsx').append(txts); 
+
+	var pot_resultado=elevar(asi_de_ips);
+	que_rango_mascara(Number(pot_resultado.potencia));
+	calcula_ip_inicial();
+	insertar_comandosj();
+	calcula_ip_final(pot_resultado.resultado_potencia);
 }
+
 function calcula_ip_inicial() {
 	if (primera_vez) {
 		primera_vez=false;
@@ -93,20 +108,16 @@ function calcula_ip_inicial() {
 		}
 	}
 	ip_ini_enruta=remplazador(ip_red);
-	imprimir("ip inicial: ",ip_red,mascara,"green");
+	imprimirj("ip inicial: ",ip_red,mascara,"green");
 	var ipmod=ip_red.slice();;
 	ipmod[3]=ipmod[3]+1;
-	imprimir("1st valida: ",ipmod,mascara,"blue");
+	imprimirj("1st valida: ",ipmod,mascara,"blue");
 	ipmod[3]=ipmod[3]+1;
-	imprimir("2nd valida: ",ipmod,mascara,"blue");
+	imprimirj("2nd valida: ",ipmod,mascara,"blue");
 }
 
 function remplazador(argument) {
 	return argument.toString().replace(/,/g,".");
-}
-
-function imprimir(tipoip,mip,maskara,color) {
-	console.log("%c"+tipoip+remplazador(mip)+" "+maskara,"color:"+color);
 }
 
 function calcula_ip_final(elmultiplo){
@@ -124,7 +135,10 @@ function calcula_ip_final(elmultiplo){
 		}
 	}
 	
-	imprimir("Ip final ",ip_red,"","green");
+	imprimirj("Ip final ",ip_red,"","green");
+
+	
+
 }
 
 function que_rango_mascara(la_potencia) {
@@ -181,6 +195,7 @@ function capturar_cuantas_ips() {
 }
 
 function for_numero_redes(argument) {
+
 	for (var i =  0; i < argument; i++) {
 		if (normal) {
 			principal();
@@ -188,22 +203,4 @@ function for_numero_redes(argument) {
 			main_revuelto();
 		}
 	}
-}
-
-function myFunction() {
-    var arre_radio = document.forms[0];
-     var vis = "none";
-    for (var i = 0; i < arre_radio.length; i++) {
-        if (arre_radio[i].checked) {
-            tipo_enruta =arre_radio[i].value + "";
-		    if (tipo_enruta=="eigrp") {
-		    	 vis = "block";
-		    }
-		    if (tipo_enruta=="ospf") {
-		    	 vis = "block";
-		    	 document.getElementById('input_area').style.display = vis;
-		    }
-        }
-    }
-    document.getElementById('input_num').style.display = vis;
 }

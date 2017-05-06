@@ -13,6 +13,8 @@
 	<script src="js/desorden.js"></script>
 </head>
 <body>
+
+<!-- 	Protocolo  -->
 	<form action="">
 		Protocolo:<br>
 		<input type="radio" name="protocolo" value="ninguno" id="ninguno" checked>Ninguno<br>
@@ -30,23 +32,32 @@
 		</div>
 
 	</form>
+<!-- Termina protocolo  -->
 
+
+<!-- Modo de ingresar ips -->
 	<form>
-
-		<br><br>
-			Modo:<br>
+		<br><br>Modo:<br>
 		<input id="normal" type="radio" name="ipleka" checked> <b>De mayor a menor</b> <br>
 		<input id="revuelto" type="radio" name="ipleka" ><b>En desorden</b><br>
 		<br><br>
-		<b>Ip de red:</b><br> <input type="text" id="ip_red" autofocus>
+		<b>Ip de red:</b><br> <input type="text" id="ip_red" autofocus value="10.0.0.0">
 		<br><br>
-		<b>Numero de redes:</b><br> <input type="text" id="num_redes">
+		<b>Numero de redes:</b><br> <input type="text" id="num_redes" value="2">
 		<br><br>
-		
 	</form> 
-	<button id="bt_calcular" >Calcular</button>
 
-	<br>
+<!-- Termina Modo de ingresar ips -->
+
+	<button id="bt_calcular" >Calcular</button> <br>
+
+<!-- 	Listar comandos cisco -->
 	<label id="comandos"></label>
+	<div class="comandos_cisco"></div>
+<!-- 	Termina listar comandos cisco -->
+
+<!-- Resultado de las ips -->
+<div id="resultado_ipsx" class="resultado_ips"></div>
+<!-- Termina resultado de las ips -->
 </body>
 </html>

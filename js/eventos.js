@@ -15,7 +15,7 @@ $(document).ready(function(){
 	// Detecta enter
 	$(document).keypress(function(e) {
 		if(e.which == 13) {
-			$.main();
+			$.main(); //Llama a funcion principal
 		}
 	});
 
@@ -60,6 +60,8 @@ $(document).ready(function(){
         if ($(this).is(':checked')) {
             normal=false;
             console.log("Manual, trabajando para automatico ;)");
+            txts=$("<div></div>").text("Manual, trabajando para automático").css("color","red");
+    $('#resultado_ipsx').append(txts); 
         }
     });
 
