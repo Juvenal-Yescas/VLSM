@@ -1,16 +1,14 @@
 # vlsm
 VLSM desde navegador
 ### Calcula
-* De mayor a menor
-* En desorden (Solo muestra el incremento), pronto automático.
+* Inserta comandos de cisco
+* Resultados de ip de mayor a menor
+* Resultados con ip en desorden (Solo muestra el incremento), pronto automático.
 
 #### Probarlo
 
 [https://juve-yescas.github.io/VLSM/](https://juve-yescas.github.io/VLSM/)
 
-```
-Necesario habilitar modo desarrollador
-```
 =======
 
 
