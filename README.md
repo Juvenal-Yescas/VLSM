@@ -1,5 +1,6 @@
 # vlsm
-VLSM desde navegador
+Subneteo vlsm en orden y desorden desde el navegador.
+
 ### Calcula
 * Inserta comandos de cisco
 * Resultados de ip de mayor a menor
