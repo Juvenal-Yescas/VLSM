@@ -108,7 +108,7 @@ function calcula_ip_inicial() {
 		}
 	}
 	ip_ini_enruta=remplazador(ip_red);
-	imprimirj("ip inicial: ",ip_red,mascara,"green");
+	imprimirj("Ip red: ",ip_red,mascara,"green");
 	var ipmod=ip_red.slice();;
 	ipmod[3]=ipmod[3]+1;
 	imprimirj("1st valida: ",ipmod,mascara,"blue");
@@ -135,7 +135,7 @@ function calcula_ip_final(elmultiplo){
 		}
 	}
 	
-	imprimirj("Ip final ",ip_red,"","green");
+	imprimirj("Ip broadcast ",ip_red,"","green");
 
 	
 

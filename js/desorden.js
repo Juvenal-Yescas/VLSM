@@ -23,7 +23,7 @@ function ip_inicial_revuelto() {
 	if (primera_vez) {
 		console.log("%cESTE ES VALIDO","color:orange");
 		primera_vez=false;
-		imprimirj("Ip inicial ",ip_red,mascara,"green");
+		imprimirj("Ip red ",ip_red,mascara,"green");
 		ip_red[3]=ip_red[3]+1;
 		imprimirj("1st valida: ",ip_red,mascara,"blue");
 		ip_red[3]=ip_red[3]+1;
@@ -38,22 +38,28 @@ function ip_final_revuelto(elmultiplo) {
 			
 				if ((ip_red[3]+(elmultiplo-1)) <= 255)   {
 				ip_red[3]=(elmultiplo-1);
-				imprimirj("Ip final ",ip_red,mascara,'green');
+				imprimirj("Ip broadcast ",ip_red,mascara,'green');
 				
 			}else{
 				console.log('Algo anda mal');
+				incremento_calcula(elmultiplo);
 			}
 		}else{
 			console.log('Algo anda mal');
+			incremento_calcula(elmultiplo);
 		}
 		
 		
 	}else{
-		if (elmultiplo<=256) {
+		incremento_calcula(elmultiplo);
+	}
+}
+
+function incremento_calcula(elmultiplo){
+	if (elmultiplo<=256) {
 			imprimirj("Incrementa ip en ",("0.0.0."+(elmultiplo-1)),mascara,"green");
 		}else{
 			var mod_this=rango_modificar(elmultiplo);
 			imprimirj("Incrementa ip en ",("0.0.0."+(mod_this)+".255"),mascara,"green");
-		}	
-	}
+		}
 }
