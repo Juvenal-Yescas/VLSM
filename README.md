@@ -8,7 +8,7 @@ Subneteo vlsm en orden y desorden desde el navegador.
 
 #### Probarlo
 
-[https://juve-yescas.github.io/VLSM/](https://juve-yescas.github.io/VLSM/)
+[https://juvenal-yescas.github.io/VLSM/](https://juve-yescas.github.io/VLSM/)
 
 =======
 
